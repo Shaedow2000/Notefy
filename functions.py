@@ -35,11 +35,20 @@ class NotesApp:
 
         return
 
-    def show_all_notes( self ) -> None:
-        pass
+    def show_all_notes( self ) -> str:
+        notes: str = ''
+        for i in range( len( self.data[ 'notes' ] ) ):
+            notes += f'{ i + 1 }. { self.data[ 'notes' ][ i ][ 'title' ] }'
 
-    def read_note( self ) -> None:
-        pass
+        return notes
+
+    def read_note( self, id: int ) -> dict:
+        note: dict = {}
+        for i in range( len( self.data[ 'notes' ] ) ):
+            if self.data[ 'notes' ][ i ][ 'id' ] == id:
+                note = self.data[ 'notes' ][ i ]
+
+        return note
 
     def update_note( self ) -> None:
         pass
