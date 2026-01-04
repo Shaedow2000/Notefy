@@ -28,8 +28,12 @@ class NotesApp:
 
         return
 
-    def remove_note( self ) -> None:
-        pass
+    def remove_note( self, id: int ) -> None:
+        for i in range( len( self.data[ 'notes' ] ) ):
+            if self.data[ 'notes' ][ i ][ 'id' ] == id:
+                self.data[ 'notes' ].pop( i )
+
+        return
 
     def show_all_notes( self ) -> None:
         pass
