@@ -64,6 +64,10 @@ def ui() -> None:
     id_entry.pack()
     delete.pack( pady=5 )
 
+    # SHOW ALL NOTES MENU
+    all_notes_show: Label = Label( show_all_menu, textvariable=notes_list, font=( 'Impact', 20 ) )
+    all_notes_show.pack()
+
     ###########################
     # MAIN
 
