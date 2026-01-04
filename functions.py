@@ -38,6 +38,14 @@ class NotesApp:
             if self.data[ 'notes' ][ i ][ 'id' ] == id:
                 self.data[ 'notes' ].pop( i )
 
+                self.rewrite_json( self.data )
+
+                break
+
+        for i in range( len( self.data[ 'notes' ] ) ):
+            self.data[ 'notes' ][ i ][ 'id' ] = i
+            self.rewrite_json( self.data )
+
         return
 
     def show_all_notes( self ) -> str:

@@ -20,6 +20,17 @@ def hide_menus() -> None:
 
     return
 
+def check_is_int( n: str ) -> bool:
+    try:
+        if '-' not in str( n ):
+            int( n )
+
+            return True
+        else:
+            raise ValueError()
+    except ValueError:
+        return False
+
 def ui() -> None:
     global window
     window.geometry( '800x500' )
@@ -40,6 +51,18 @@ def ui() -> None:
     text_entry.pack()
     submit.pack( pady=5 )
 
+    # REMOVE NOTE MENU
+    error: Label = Label( remove_menu, text='Incorrect ID.', fg='red', font=( 'Impact', 20, 'bold italic underline' ) )
+    all_notes_remove: Label = Label( remove_menu, textvariable=notes_list, font=( 'Impact', 20 ) )
+    
+    id_entry: Entry = Entry( remove_menu, width=25, font=( 'Impact', 22 ) )
+    id_entry.insert( 0, 'Id' )
+    
+    delete: Button = Button( remove_menu, text='Remove', font=( 'Impact', 12 ), command=lambda: notesapp.remove_note( int( id_entry.get() ) - 1 ) if check_is_int( id_entry.get() ) else error.pack() )
+
+    all_notes_remove.pack()
+    id_entry.pack()
+    delete.pack( pady=5 )
 
     ###########################
     # MAIN
