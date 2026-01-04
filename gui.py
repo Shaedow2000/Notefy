@@ -33,7 +33,7 @@ def check_is_int( n: str ) -> bool:
 
 def ui() -> None:
     global window
-    window.geometry( '800x500' )
+    window.geometry( '900x600' )
     window.minsize( 800, 500 )
 
     notes_list: StringVar = StringVar( value=notesapp.show_all_notes() )
@@ -84,6 +84,25 @@ def ui() -> None:
     read.pack( pady=5 )
     note.pack()
 
+    # UPDATE MENU
+    error3: Label = Label( update_menu, text='Incorrect ID.', fg='red', font=( 'Impact', 20, 'bold italic underline' ) )
+    all_notes_update: Label = Label( update_menu, textvariable=notes_list, font=( 'Impact', 20 ) )
+
+    id_entry3: Entry = Entry( update_menu, width=25, font=( 'Impact', 22 ) )
+    id_entry3.insert( 0, 'Id' )
+
+    update_title: Entry = Entry( update_menu, width=25, font=( 'Impact', 22 ) )
+    update_text: Entry = Entry( update_menu, width=25, font=( 'Impact', 22 ) )
+
+    update_title.insert( 0, '( Delete to not change the title/text )' )
+
+    update: Button = Button( update_menu, text='Update', font=( 'Impact', 12 ), command=lambda: ( error3.pack_forget(), notesapp.update_note( int( id_entry3.get() ) - 1, update_title.get() if update_title.get().replace( ' ', '' ) != '' else None, update_text.get() if update_text.get().replace( ' ', '' ) != '' else None ) if check_is_int( id_entry3.get() ) else error3.pack(), id_entry3.delete( 0, END ), id_entry3.insert( 0, 'Id' ), update_title.delete( 0, END ), update_text.delete( 0, END ), update_title.insert( 0, '( Delete to not change the title/text )' ), notes_list.set( value=notesapp.show_all_notes() ) ) )
+
+    all_notes_update.pack()
+    id_entry3.pack()
+    update_title.pack()
+    update_text.pack()
+    update.pack()
     ###########################
     # MAIN
 

@@ -63,10 +63,15 @@ class NotesApp:
 
         return f'=============== Note #{ note[ "id" ] + 1 } ===============\nId: { note[ "id" ] }\nTitle: { note[ "title" ] }\nText: { note[ "text" ] }'
 
-    def update_note( self, id: int, new_title: str, new_text: str ) -> None:
+    def update_note( self, id: int, new_title: str | None, new_text: str | None ) -> None:
         for i in range( len( self.data[ 'notes' ] ) ):
             if self.data[ 'notes' ][ i ][ 'id' ] == id:
-                self.data[ 'notes' ][ i ][ 'title' ] = new_title
-                self.data[ 'notes' ][ i ][ 'text' ] = new_text
+                if new_title != None:
+                    self.data[ 'notes' ][ i ][ 'title' ] = new_title
+                
+                if new_text != None:
+                    self.data[ 'notes' ][ i ][ 'text' ] = new_text
+
+                break
 
         self.rewrite_json( self.data )
