@@ -14,8 +14,19 @@ class NotesApp:
 
         return
 
-    def add_note( self ) -> None:
-        pass
+    def add_note( self, title: str, text: str ) -> None:
+        if title.replace( ' ', '' ) == '':
+            title = f"Untitled #{ len( self.data[ 'notes' ] ) }"
+
+        new_note: dict = { 
+            'id': len( self.data[ 'notes' ] ),
+            'title': title,
+            'text': text
+        }
+
+        self.data[ 'notes' ].append( new_note )
+
+        return
 
     def remove_note( self ) -> None:
         pass
