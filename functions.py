@@ -26,6 +26,8 @@ class NotesApp:
 
         self.data[ 'notes' ].append( new_note )
 
+        self.rewrite_json( self.data )
+
         return
 
     def remove_note( self, id: int ) -> None:
@@ -50,5 +52,10 @@ class NotesApp:
 
         return note
 
-    def update_note( self ) -> None:
-        pass
+    def update_note( self, id: int, new_title: str, new_text: str ) -> None:
+        for i in range( len( self.data[ 'notes' ] ) ):
+            if self.data[ 'notes' ][ i ][ 'id' ] == id:
+                self.data[ 'notes' ][ i ][ 'title' ] = new_title
+                self.data[ 'notes' ][ i ][ 'text' ] = new_text
+
+        self.rewrite_json( self.data )
