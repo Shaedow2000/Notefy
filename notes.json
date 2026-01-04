@@ -1,0 +1,24 @@
+{
+    "notes": [
+        {
+            "id": 0,
+            "title": "Untitled #1",
+            "text": "Text"
+        },
+        {
+            "id": 1,
+            "title": "Untitled #2",
+            "text": "Text"
+        },
+        {
+            "id": 2,
+            "title": "Untitled #3",
+            "text": "Text"
+        },
+        {
+            "id": 3,
+            "title": "Untitled #4",
+            "text": "Text"
+        }
+    ]
+}

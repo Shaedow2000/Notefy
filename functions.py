@@ -14,6 +14,9 @@ class NotesApp:
 
         return
 
+    def number_of_notes( self ) -> int:
+        return len( self.data[ 'notes' ] )
+
     def add_note( self, title: str, text: str ) -> None:
         if title.replace( ' ', '' ) == '':
             title = f"Untitled #{ len( self.data[ 'notes' ] ) }"
@@ -40,7 +43,7 @@ class NotesApp:
     def show_all_notes( self ) -> str:
         notes: str = ''
         for i in range( len( self.data[ 'notes' ] ) ):
-            notes += f'{ i + 1 }. { self.data[ 'notes' ][ i ][ 'title' ] }'
+            notes += f'{ i + 1 }. { self.data[ 'notes' ][ i ][ 'title' ] }\n'
 
         return notes
 
