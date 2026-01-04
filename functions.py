@@ -55,13 +55,13 @@ class NotesApp:
 
         return notes
 
-    def read_note( self, id: int ) -> dict:
+    def read_note( self, id: int ) -> str:
         note: dict = {}
         for i in range( len( self.data[ 'notes' ] ) ):
             if self.data[ 'notes' ][ i ][ 'id' ] == id:
                 note = self.data[ 'notes' ][ i ]
 
-        return note
+        return f'=============== Note #{ note[ "id" ] + 1 } ===============\nId: { note[ "id" ] }\nTitle: { note[ "title" ] }\nText: { note[ "text" ] }'
 
     def update_note( self, id: int, new_title: str, new_text: str ) -> None:
         for i in range( len( self.data[ 'notes' ] ) ):

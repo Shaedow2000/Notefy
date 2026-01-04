@@ -75,11 +75,14 @@ def ui() -> None:
     id_entry2: Entry = Entry( read_menu, width=25, font=( 'Impact', 22 ) )
     id_entry2.insert( 0, 'Id' )
 
-    read: Button = Button( read_menu, text='Read', font=( 'Impact', 12 ), command=lambda: ( error2.pack_forget(), notesapp.read_note( int( id_entry2.get() ) - 1 ) if check_is_int( id_entry2.get() ) else error2.pack(), id_entry2.delete( 0, END ), id_entry2.insert( 0, 'Id' ), notes_list.set( value=notesapp.show_all_notes() ) ) )
+    note: Label = Label( read_menu, font=( 'Impact', 20 ) )
+
+    read: Button = Button( read_menu, text='Read', font=( 'Impact', 12 ), command=lambda: ( error2.pack_forget(), note.config( text=notesapp.read_note( int( id_entry2.get() ) - 1 ) ) if check_is_int( id_entry2.get() ) else error2.pack(), id_entry2.delete( 0, END ), id_entry2.insert( 0, 'Id' ), notes_list.set( value=notesapp.show_all_notes() ) ) )
 
     all_notes_read.pack()
     id_entry2.pack()
     read.pack( pady=5 )
+    note.pack()
 
     ###########################
     # MAIN
