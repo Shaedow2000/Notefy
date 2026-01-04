@@ -2,7 +2,7 @@ import sys
 from gui import ui
 
 def main() -> None:
-    pass
+    ui() 
 
 if __name__ == '__main__':
     try:
