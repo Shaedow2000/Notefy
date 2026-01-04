@@ -4,8 +4,15 @@ class NotesApp:
     def __init__( self, dir: str ) -> None:
         self.dir: str = dir
 
-    def rewrite_json( self ) -> None:
-        pass
+        self.data: dict = {}
+        with open( self.dir, 'r' ) as file:
+            self.data = json.load( file )
+
+    def rewrite_json( self, new_data: dict ) -> None:
+        with open( self.dir, 'w' ) as file:
+            json.dump( new_data, file, indent=4 )
+
+        return
 
     def add_note( self ) -> None:
         pass
