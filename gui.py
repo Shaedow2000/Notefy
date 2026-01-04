@@ -58,7 +58,7 @@ def ui() -> None:
     id_entry: Entry = Entry( remove_menu, width=25, font=( 'Impact', 22 ) )
     id_entry.insert( 0, 'Id' )
     
-    delete: Button = Button( remove_menu, text='Remove', font=( 'Impact', 12 ), command=lambda: notesapp.remove_note( int( id_entry.get() ) - 1 ) if check_is_int( id_entry.get() ) else error.pack() )
+    delete: Button = Button( remove_menu, text='Remove', font=( 'Impact', 12 ), command=lambda: ( error.pack_forget(), notesapp.remove_note( int( id_entry.get() ) - 1 ) if check_is_int( id_entry.get() ) else error.pack(), id_entry.delete( 0, END ), id_entry.insert( 0, 'Id' ),  notes_list.set( value=notesapp.show_all_notes() ) ) )
 
     all_notes_remove.pack()
     id_entry.pack()
