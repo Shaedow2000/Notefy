@@ -58,7 +58,7 @@ def ui() -> None:
     id_entry: Entry = Entry( remove_menu, width=25, font=( 'Impact', 22 ) )
     id_entry.insert( 0, 'Id' )
     
-    delete: Button = Button( remove_menu, text='Remove', font=( 'Impact', 12 ), command=lambda: ( error.pack_forget(), notesapp.remove_note( int( id_entry.get() ) - 1 ) if check_is_int( id_entry.get() ) else error.pack(), id_entry.delete( 0, END ), id_entry.insert( 0, 'Id' ),  notes_list.set( value=notesapp.show_all_notes() ) ) )
+    delete: Button = Button( remove_menu, text='Remove', font=( 'Impact', 12 ), command=lambda: ( error.pack_forget(), notesapp.remove_note( int( id_entry.get() ) - 1 ) if check_is_int( id_entry.get() ) else error.pack(), id_entry.delete( 0, END ), id_entry.insert( 0, 'Id' ), notes_list.set( value=notesapp.show_all_notes() ) ) )
 
     all_notes_remove.pack()
     id_entry.pack()
@@ -67,6 +67,19 @@ def ui() -> None:
     # SHOW ALL NOTES MENU
     all_notes_show: Label = Label( show_all_menu, textvariable=notes_list, font=( 'Impact', 20 ) )
     all_notes_show.pack()
+
+    # READ NOTE MENU
+    error2: Label = Label( read_menu, text='Incorrect ID.', fg='red', font=( 'Impact', 20, 'bold italic underline' ) )
+    all_notes_read: Label = Label( read_menu, textvariable=notes_list, font=( 'Impact', 20 ) )
+
+    id_entry2: Entry = Entry( read_menu, width=25, font=( 'Impact', 22 ) )
+    id_entry2.insert( 0, 'Id' )
+
+    read: Button = Button( read_menu, text='Read', font=( 'Impact', 12 ), command=lambda: ( error2.pack_forget(), notesapp.read_note( int( id_entry2.get() ) - 1 ) if check_is_int( id_entry2.get() ) else error2.pack(), id_entry2.delete( 0, END ), id_entry2.insert( 0, 'Id' ), notes_list.set( value=notesapp.show_all_notes() ) ) )
+
+    all_notes_read.pack()
+    id_entry2.pack()
+    read.pack( pady=5 )
 
     ###########################
     # MAIN
