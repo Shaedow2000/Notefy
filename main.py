@@ -1,9 +1,5 @@
-import sys, os, json
+import sys, os
 from ui import ui
-
-if not os.path.exists( 'notes.json' ):
-    with open( 'notes.json', 'w' ) as file:
-        json.dump( { 'notes': [] }, file )
 
 def main() -> None:
     pass
