@@ -15,7 +15,10 @@ class NotesApp:
         return
 
     def rewrite_ids( self ) -> None:
-        pass
+        for i in range( self.data[ 'notes' ] ):
+            self.data[ 'notes' ][ i ][ 'id' ] = i
+
+        return
 
     def get_notes_num( self ) -> None:
         pass
