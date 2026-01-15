@@ -67,8 +67,13 @@ class NotesApp:
         self.rewrite_json( self.data )
         return
 
-    def read( self ) -> None:
-        pass
+    def read( self, id: int ) -> str:
+        note: dict = {}
+        for i in range( self.data[ 'notes' ] ):
+            if self.data[ 'notes' ][ i ][ 'id' ] == id:
+                note = self.data[ 'notes' ][ i ]
+
+        return f'================ Note { note[ "id" ] } ================\n\nTitle: { note[ "title" ] }\n\nText: { note[ "text" ] }'
 
     def show_all( self ) -> None:
         pass
