@@ -1,4 +1,4 @@
-import json
+import json, os
 
 class NotesApp:
     def __init__( self ) -> None:
@@ -7,6 +7,11 @@ class NotesApp:
 
         with open( self.file, 'r' ) as file:
             self.data = json.load( file )
+
+    def create_json_file( self ) -> None:
+        if not os.path.exists( self.file ):
+            with open( self.file, 'w' ) as file:
+                json.dump( { 'notes': [] }, file )
 
     def rewrite_json( self, data: dict ) -> None:
         with open( self.file, 'w' ) as file:
