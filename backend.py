@@ -8,8 +8,11 @@ class NotesApp:
         with open( self.file, 'r' ) as file:
             self.data = json.load( file )
 
-    def rewrite_json( self ) -> None:
-        pass
+    def rewrite_json( self, data: dict ) -> None:
+        with open( self.file, 'w' ) as file:
+            json.dump( file, data )
+
+        return
 
     def rewrite_ids( self ) -> None:
         pass
