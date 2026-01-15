@@ -53,8 +53,19 @@ class NotesApp:
 
         return
 
-    def update( self ) -> None:
-        pass
+    def update( self, id: int, new_title: str, new_text: str ) -> None:
+        for i in range( self.data[ 'notes' ] ):
+            if self.data[ 'notes' ][ i ][ 'id' ] == id:
+                if new_title != None:
+                    self.data[ 'notes' ][ i ][ 'title' ] = new_title
+
+                if new_text != None:
+                    self.data[ 'notes' ][ i ][ 'text' ] = new_text
+
+                break
+
+        self.rewrite_json( self.data )
+        return
 
     def read( self ) -> None:
         pass
