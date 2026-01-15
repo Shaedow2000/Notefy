@@ -75,5 +75,12 @@ class NotesApp:
 
         return f'================ Note { note[ "id" ] } ================\n\nTitle: { note[ "title" ] }\n\nText: { note[ "text" ] }'
 
-    def show_all( self ) -> None:
-        pass
+    def show_all( self ) -> str:
+        notes_titles: str = ''
+        for i in range( self.data[ 'notes' ] ):
+            if i % 2:
+                notes_titles += f'{ i }. { self.data[ "notes" ][ i ][ "title" ] }\n'
+            else:
+                notes_titles += f'{ i }. { self.data[ "notes" ][ i ][ "title" ] }\t|\t'
+
+        return notes_titles if notes_titles.replace( ' ', '' ) != '' else 'No notes found\n\n:('
