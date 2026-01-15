@@ -47,7 +47,11 @@ class NotesApp:
         return
 
     def remove_all( self ) -> None:
-        pass
+        self.data[ 'notes' ] = []
+
+        self.rewrite_json( self.data )
+
+        return
 
     def update( self ) -> None:
         pass
