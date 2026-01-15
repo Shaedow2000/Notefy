@@ -20,8 +20,8 @@ class NotesApp:
 
         return
 
-    def get_notes_num( self ) -> None:
-        pass
+    def get_notes_num( self ) -> int:
+        return len( self.data[ 'notes' ] ) 
 
     def add( self ) -> None:
         pass
