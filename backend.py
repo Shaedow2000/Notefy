@@ -23,10 +23,19 @@ class NotesApp:
     def get_notes_num( self ) -> int:
         return len( self.data[ 'notes' ] ) 
 
-    def add( self ) -> None:
-        pass
+    def add( self, title: str, text: str ) -> None:
+        note: dict = {
+            'id': self.get_notes_num(),
+            'title': title,
+            'text': text
+        }
 
-    def remove( self ) -> None:
+        self.data[ 'notes' ].append( note )
+        self.rewrite_json( self.data )
+
+        return
+
+    def remove( self, id: int ) -> None:
         pass
 
     def remove_all( self ) -> None:
