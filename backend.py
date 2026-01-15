@@ -10,7 +10,7 @@ class NotesApp:
 
     def rewrite_json( self, data: dict ) -> None:
         with open( self.file, 'w' ) as file:
-            json.dump( file, data )
+            json.dump( data, file )
 
         return
 
