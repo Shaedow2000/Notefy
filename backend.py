@@ -36,7 +36,15 @@ class NotesApp:
         return
 
     def remove( self, id: int ) -> None:
-        pass
+        for i in range( self.data[ 'notes' ] ):
+            if self.data[ 'notes' ][ i ][ 'id' ] == id:
+                self.data[ 'notes' ].pop( i )
+                break
+        
+        self.rewrite_json( self.data )
+        self.rewrite_ids()
+
+        return
 
     def remove_all( self ) -> None:
         pass
