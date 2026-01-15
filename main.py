@@ -1,4 +1,4 @@
-import sys, os
+import sys, os, json
 from ui import ui
 
 if not os.path.exists( 'notes.json' ):
