@@ -2,7 +2,11 @@ import json
 
 class NotesApp:
     def __init__( self ) -> None:
-        pass
+        self.file: str = 'notes.json'
+        self.data: dict = {}
+
+        with open( self.file, 'r' ) as file:
+            self.data = json.load( file )
 
     def rewrite_json( self ) -> None:
         pass
