@@ -1,4 +1,4 @@
-import sys, os
+import sys
 from ui import ui
 
 def main() -> None:
