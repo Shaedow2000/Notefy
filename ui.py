@@ -11,6 +11,15 @@ update_menu: Frame = Frame( window )
 read_menu: Frame = Frame( window )
 show_all_menu: Frame = Frame( window )
 
+def hide_menus() -> None:
+    add_menu.pack_forget()
+    remove_menu.pack_forget()
+    update_menu.pack_forget()
+    read_menu.pack_forget()
+    show_all_menu.pack_forget()
+
+    return
+
 def ui() -> None:
     # GLOBAL VARS
     fonts: tuple = ( 'Impact', 18 )
