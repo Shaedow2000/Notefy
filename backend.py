@@ -33,6 +33,8 @@ class NotesApp:
         for i in range( len( self.data[ 'notes' ] ) ):
             self.data[ 'notes' ][ i ][ 'id' ] = i
 
+        self.rewrite_json( self.data )
+
         return
 
     # Get the number of notes 
