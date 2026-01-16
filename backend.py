@@ -73,7 +73,7 @@ class NotesApp:
         return
 
     # Update note title and/or text by id
-    def update( self, id: int, new_title: str, new_text: str ) -> None:
+    def update( self, id: int, new_title: str | None, new_text: str | None ) -> None:
         for i in range( self.data[ 'notes' ] ):
             if self.data[ 'notes' ][ i ][ 'id' ] == id:
                 if new_title != None:
