@@ -18,4 +18,8 @@ def ui() -> None:
     top_label: Label = Label( window, text='Notefy', font=( 'Impact', 26, 'bold' ), fg='black', bg='skyblue', relief=FLAT, bd=14 )
     top_label.pack( fill='x' )
 
+    button_side: Frame = Frame( window )
+
+    button_side.pack( side='left', fill='y' )
+
     window.mainloop()
