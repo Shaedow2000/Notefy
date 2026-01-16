@@ -23,6 +23,8 @@ def hide_menus() -> None:
 def ui() -> None:
     # GLOBAL VARS
     fonts: tuple = ( 'Impact', 18 )
+    default_title: StringVar = StringVar( value=f'Untitled #{ notesapp.get_notes_num() }' )
+
     global window
     global add_menu, remove_menu, update_menu, read_menu, show_all_menu
 
@@ -50,6 +52,25 @@ def ui() -> None:
     show_all_button.pack( pady=5 )
 
     buttons_side.pack( side='left', fill='y' )
+
+    # -------------------------------------------------------------------- # 
+    # ADD MENU 
+    title_entry: Entry = Entry( add_menu, font=fonts, width=35, textvariable=default_title )
+    text_entry : Entry = Entry( add_menu, font=fonts, width=35 )
+
+    text_entry.insert( 0, 'Text' )
+
+    submit: Button = Button( add_menu, text='Add', font=fonts, command=lambda: (
+        notesapp.add( title_entry.get().strip() if title_entry.get().replace( ' ', '' ) != '' else f'Untitled #{ notesapp.get_notes_num() }', text_entry.get().strip() ),
+        title_entry.delete( 0, END ),
+        text_entry.delete(  0, END ),
+        default_title.set( value=f'Untitled #{ notesapp.get_notes_num() }' ),
+        text_entry.insert( 0, 'Text' )
+    ) )
+
+    title_entry.pack()
+    text_entry.pack()
+    submit.pack( pady=5 )
 
     # START WINDOW
     window.mainloop()
