@@ -90,7 +90,7 @@ def ui() -> None:
 
     remove: Button = Button( remove_menu, text='Remove', font=fonts, command=lambda: (
         remove_error.pack_forget(),
-        notesapp.remove( int( remove_id_entry.get().replace( ' ', '' ) ) ) if is_int( remove_id_entry.get().replace( ' ', '' ) ) else remove_error.pack(),
+        notesapp.remove( int( remove_id_entry.get().replace( ' ', '' ) ) ) if is_int( remove_id_entry.get().replace( ' ', '' ) ) and int( remove_id_entry.get().replace( ' ', '' ) ) <= notesapp.get_notes_num() else remove_error.pack(),
         remove_id_entry.delete( 0, END ),
         remove_id_entry.insert( 0, 'Id' )
     ) )
@@ -110,7 +110,7 @@ def ui() -> None:
 
     update: Button = Button( update_menu, text='Update', font=fonts, command=lambda: (
         update_error.pack_forget(),
-        notesapp.update( int( update_id_entry.get().replace( ' ', '' ) ), update_title_entry.get().strip() if update_title_entry.get().replace( ' ', '' ) != '' else None, update_text_entry.get().strip() ) if is_int( update_id_entry.get().replace( ' ', '' ) ) else update_error.pack(),
+        notesapp.update( int( update_id_entry.get().replace( ' ', '' ) ), update_title_entry.get().strip() if update_title_entry.get().replace( ' ', '' ) != '' else None, update_text_entry.get().strip() ) if is_int( update_id_entry.get().replace( ' ', '' ) ) and int( update_id_entry.get().replace( ' ', '' ) ) <= notesapp.get_notes_num() else update_error.pack(),
         update_id_entry.delete( 0, END ),
         update_title_entry.delete( 0, END ),
         update_text_entry.delete(  0, END ),
@@ -133,7 +133,7 @@ def ui() -> None:
 
     read: Button = Button( read_menu, text='Read', font=fonts, command=lambda: (
         read_error.pack_forget(),
-        ( note.set( notesapp.read( int( read_id_entry.get().replace( ' ', '' ) ) ) ), note_label.pack() ) if is_int( read_id_entry.get().replace( ' ', '' ) ) else ( read_error.pack(), note_label.pack_forget() ),
+        ( note.set( notesapp.read( int( read_id_entry.get().replace( ' ', '' ) ) ) ), note_label.pack() ) if is_int( read_id_entry.get().replace( ' ', '' ) ) and int( read_id_entry.get().replace( ' ', '' ) ) <= notesapp.get_notes_num() else ( read_error.pack(), note_label.pack_forget() ),
         read_id_entry.delete( 0, END ),
         read_id_entry.insert( 0, 'Id' )
     ) )
