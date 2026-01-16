@@ -26,12 +26,15 @@ def ui() -> None:
     global window
     global add_menu, remove_menu, update_menu, read_menu, show_all_menu
 
+    # WINdOW SETUP
     window.geometry( '1000x700' )
     window.minsize( 1000, 700 )
 
+    # TOP LOGO
     top_label: Label = Label( window, text='Notefy', font=( 'Impact', 26, 'bold' ), fg='black', bg='skyblue', relief=FLAT, bd=14 )
     top_label.pack( fill='x' )
 
+    # FRAME THAT HOLDS ALL THE BUTTONS TO OPEN THE MENUS
     buttons_side: Frame = Frame( window )
 
     add_button: Button = Button( buttons_side, text='Add Note', font=fonts, width=25, command=lambda: ( hide_menus(), add_menu.pack() ) )
@@ -48,4 +51,5 @@ def ui() -> None:
 
     buttons_side.pack( side='left', fill='y' )
 
+    # START WINDOW
     window.mainloop()

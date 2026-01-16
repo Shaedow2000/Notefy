@@ -1,35 +1,45 @@
 import json, os
 
+# Backend code of the app
 class NotesApp:
     def __init__( self ) -> None:
+        # Name of the file
         self.file: str = 'notes.json'
+        # Data that is inside the file
         self.data: dict = {}
 
+        # Check if the file exists
         self.create_json_file()
 
+        # retrieve data from file
         with open( self.file, 'r' ) as file:
             self.data = json.load( file )
 
+    # Create file if not found
     def create_json_file( self ) -> None:
         if not os.path.exists( self.file ):
             with open( self.file, 'w' ) as file:
                 json.dump( { 'notes': [] }, file )
 
+    # Reweites all the file with new data ( overwriting )
     def rewrite_json( self, data: dict ) -> None:
         with open( self.file, 'w' ) as file:
             json.dump( data, file )
 
         return
 
+    # Rewrite the ids in in order, from 0 to the index of the last note 
     def rewrite_ids( self ) -> None:
         for i in range( self.data[ 'notes' ] ):
             self.data[ 'notes' ][ i ][ 'id' ] = i
 
         return
 
+    # Get the number of notes 
     def get_notes_num( self ) -> int:
         return len( self.data[ 'notes' ] ) 
 
+    # Create a new note
     def add( self, title: str, text: str ) -> None:
         note: dict = {
             'id': self.get_notes_num(),
@@ -42,6 +52,7 @@ class NotesApp:
 
         return
 
+    # Remove a note by its id
     def remove( self, id: int ) -> None:
         for i in range( self.data[ 'notes' ] ):
             if self.data[ 'notes' ][ i ][ 'id' ] == id:
@@ -53,6 +64,7 @@ class NotesApp:
 
         return
 
+    # Remove all the notes
     def remove_all( self ) -> None:
         self.data[ 'notes' ] = []
 
@@ -60,6 +72,7 @@ class NotesApp:
 
         return
 
+    # Update note title and/or text by id
     def update( self, id: int, new_title: str, new_text: str ) -> None:
         for i in range( self.data[ 'notes' ] ):
             if self.data[ 'notes' ][ i ][ 'id' ] == id:
@@ -74,6 +87,7 @@ class NotesApp:
         self.rewrite_json( self.data )
         return
 
+    # Read the title and text of a note by its id
     def read( self, id: int ) -> str:
         note: dict = {}
         for i in range( self.data[ 'notes' ] ):
@@ -82,6 +96,7 @@ class NotesApp:
 
         return f'================ Note { note[ "id" ] } ================\n\nTitle: { note[ "title" ] }\n\nText: { note[ "text" ] }'
 
+    # Show all the existing notes titles 
     def show_all( self ) -> str:
         notes_titles: str = ''
         for i in range( self.data[ 'notes' ] ):
