@@ -23,6 +23,8 @@ def hide_menus() -> None:
 def ui() -> None:
     # GLOBAL VARS
     fonts: tuple = ( 'Impact', 18 )
+    global window
+    global add_menu, remove_menu, update_menu, read_menu, show_all_menu
 
     window.geometry( '1000x700' )
     window.minsize( 1000, 700 )
