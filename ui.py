@@ -20,10 +20,18 @@ def hide_menus() -> None:
 
     return
 
+def is_int( n: str ) -> bool:
+    try:
+        int( n )
+        return True
+    except ValueError:
+        return False
+
 def ui() -> None:
     # GLOBAL VARS
     fonts: tuple = ( 'Impact', 18 )
     default_title: StringVar = StringVar( value=f'Untitled #{ notesapp.get_notes_num() }' )
+    error: list = [ 'Invalid ID', ( *fonts, 'bold italic underline' ), 'red' ]
 
     global window
     global add_menu, remove_menu, update_menu, read_menu, show_all_menu
@@ -73,11 +81,14 @@ def ui() -> None:
     submit.pack( pady=5 )
 
     # REMOVE MENU
+    remove_error: Label = Label( remove_menu, text=error[ 0 ], font=error[ 1 ], fg=error[ 2 ] )
+
     remove_id_entry: Entry = Entry( remove_menu, font=fonts, width=35 )
     remove_id_entry.insert( 0, 'Id' )
 
     remove: Button = Button( remove_menu, text='Remove', font=fonts, command=lambda: (
-        notesapp.remove( int( remove_id_entry.get().replace( ' ', '' ) ) ),
+        remove_error.pack_forget(),
+        notesapp.remove( int( remove_id_entry.get().replace( ' ', '' ) ) ) if is_int( remove_id_entry.get().replace( ' ', '' ) ) else remove_error.pack(),
         remove_id_entry.delete( 0, END ),
         remove_id_entry.insert( 0, 'Id' )
     ) )
