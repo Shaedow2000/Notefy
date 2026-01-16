@@ -1,3 +1,4 @@
+from os import replace
 from tkinter import *
 from backend import NotesApp
 
@@ -96,5 +97,29 @@ def ui() -> None:
     remove_id_entry.pack()
     remove.pack( pady=5 )
 
+    # UPDATE MENU
+    update_error: Label = Label( update_menu, text=error[ 0 ], font=error[ 1 ], fg=error[ 2 ] )
+
+    update_id_entry: Entry = Entry( update_menu, font=fonts, width=35 )
+    update_title_entry: Entry = Entry( update_menu, font=fonts, width=35 )
+    update_text_entry : Entry = Entry( update_menu, font=fonts, width=35 )
+
+    update_id_entry.insert( 0, 'Id' )
+    update_title_entry.insert( 0, '(leave empty to not change)' )
+
+    update: Button = Button( update_menu, text='Update', font=fonts, command=lambda: (
+        update_error.pack_forget(),
+        notesapp.update( int( update_id_entry.get().replace( ' ', '' ) ), update_title_entry.get().strip() if update_title_entry.get().replace( ' ', '' ) != '' else None, update_text_entry.get().strip() ) if is_int( update_id_entry.get().replace( ' ', '' ) ) else update_error.pack(),
+        update_id_entry.delete( 0, END ),
+        update_title_entry.delete( 0, END ),
+        update_text_entry.delete(  0, END ),
+        update_id_entry.insert( 0, 'Id' ),
+        update_title_entry.insert( 0, '(leave empty to not change)' )
+    ) )
+
+    update_id_entry.pack()
+    update_title_entry.pack()
+    update_text_entry.pack()
+    update.pack( pady=5 )
     # START WINDOW
     window.mainloop()
