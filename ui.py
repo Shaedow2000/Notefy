@@ -33,6 +33,7 @@ def ui() -> None:
     fonts: tuple = ( 'Impact', 18 )
     default_title: StringVar = StringVar( value=f'Untitled #{ notesapp.get_notes_num() }' )
     error: list = [ 'Invalid ID', ( *fonts, 'bold italic underline' ), 'red' ]
+    note: StringVar = StringVar( value='' )
 
     global window
     global add_menu, remove_menu, update_menu, read_menu, show_all_menu
@@ -121,5 +122,25 @@ def ui() -> None:
     update_title_entry.pack()
     update_text_entry.pack()
     update.pack( pady=5 )
+
+    # READ MENU
+    read_error: Label = Label( read_menu, text=error[ 0 ], font=error[ 1 ], fg=error[ 2 ] )
+
+    note_label: Label = Label( read_menu, textvariable=note, font=fonts, wraplength=600 )
+
+    read_id_entry: Entry = Entry( read_menu, font=fonts, width=35 )
+    read_id_entry.insert( 0, 'Id' )
+
+    read: Button = Button( read_menu, text='Read', font=fonts, command=lambda: (
+        read_error.pack_forget(),
+        note.set( notesapp.read( int( read_id_entry.get().replace( ' ', '' ) ) ) ) if is_int( read_id_entry.get().replace( ' ', '' ) ) else read_error.pack(),
+        read_id_entry.delete( 0, END ),
+        read_id_entry.insert( 0, 'Id' )
+    ) )
+
+    read_id_entry.pack()
+    read.pack( pady=5 )
+    note_label.pack()
+
     # START WINDOW
     window.mainloop()
