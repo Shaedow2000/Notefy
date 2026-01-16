@@ -72,5 +72,18 @@ def ui() -> None:
     text_entry.pack()
     submit.pack( pady=5 )
 
+    # REMOVE MENU
+    remove_id_entry: Entry = Entry( remove_menu, font=fonts, width=35 )
+    remove_id_entry.insert( 0, 'Id' )
+
+    remove: Button = Button( remove_menu, text='Remove', font=fonts, command=lambda: (
+        notesapp.remove( int( remove_id_entry.get().replace( ' ', '' ) ) ),
+        remove_id_entry.delete( 0, END ),
+        remove_id_entry.insert( 0, 'Id' )
+    ) )
+
+    remove_id_entry.pack()
+    remove.pack( pady=5 )
+
     # START WINDOW
     window.mainloop()

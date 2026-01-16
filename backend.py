@@ -30,7 +30,7 @@ class NotesApp:
 
     # Rewrite the ids in in order, from 0 to the index of the last note 
     def rewrite_ids( self ) -> None:
-        for i in range( self.data[ 'notes' ] ):
+        for i in range( len( self.data[ 'notes' ] ) ):
             self.data[ 'notes' ][ i ][ 'id' ] = i
 
         return
@@ -54,7 +54,7 @@ class NotesApp:
 
     # Remove a note by its id
     def remove( self, id: int ) -> None:
-        for i in range( self.data[ 'notes' ] ):
+        for i in range( len( self.data[ 'notes' ] ) ):
             if self.data[ 'notes' ][ i ][ 'id' ] == id:
                 self.data[ 'notes' ].pop( i )
                 break
@@ -74,7 +74,7 @@ class NotesApp:
 
     # Update note title and/or text by id
     def update( self, id: int, new_title: str | None, new_text: str | None ) -> None:
-        for i in range( self.data[ 'notes' ] ):
+        for i in range( len( self.data[ 'notes' ] ) ):
             if self.data[ 'notes' ][ i ][ 'id' ] == id:
                 if new_title != None:
                     self.data[ 'notes' ][ i ][ 'title' ] = new_title
@@ -90,7 +90,7 @@ class NotesApp:
     # Read the title and text of a note by its id
     def read( self, id: int ) -> str:
         note: dict = {}
-        for i in range( self.data[ 'notes' ] ):
+        for i in range( len( self.data[ 'notes' ] ) ):
             if self.data[ 'notes' ][ i ][ 'id' ] == id:
                 note = self.data[ 'notes' ][ i ]
 
