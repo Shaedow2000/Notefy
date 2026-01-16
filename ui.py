@@ -14,4 +14,7 @@ read_menu: Frame = Frame( window )
 show_all_menu: Frame = Frame( window )
 
 def ui() -> None:
-    pass 
+    window.geometry( '1000x700' )
+    window.minsize( 1000, 700 )
+
+    window.mainloop()
