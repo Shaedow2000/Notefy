@@ -13,7 +13,7 @@ show_all_menu: Frame = Frame( window )
 
 def ui() -> None:
     # GLOBAL VARS
-    fonts: tuple = ( 'Impact', 16 )
+    fonts: tuple = ( 'Impact', 18 )
 
     window.geometry( '1000x700' )
     window.minsize( 1000, 700 )
