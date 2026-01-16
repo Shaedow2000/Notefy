@@ -3,8 +3,6 @@ from backend import NotesApp
 
 notesapp: NotesApp = NotesApp()
 
-notesapp.create_json_file()
-
 window: Tk = Tk()
 
 add_menu: Frame = Frame( window )

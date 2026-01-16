@@ -5,6 +5,8 @@ class NotesApp:
         self.file: str = 'notes.json'
         self.data: dict = {}
 
+        self.create_json_file()
+
         with open( self.file, 'r' ) as file:
             self.data = json.load( file )
 
