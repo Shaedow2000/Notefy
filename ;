@@ -133,7 +133,7 @@ def ui() -> None:
 
     read: Button = Button( read_menu, text='Read', font=fonts, command=lambda: (
         read_error.pack_forget(),
-        ( note.set( notesapp.read( int( read_id_entry.get().replace( ' ', '' ) ) ) ), note_label.pack() ) if is_int( read_id_entry.get().replace( ' ', '' ) ) else ( read_error.pack(), note_label.pack_forget() ),
+        note.set( notesapp.read( int( read_id_entry.get().replace( ' ', '' ) ) ) ) if is_int( read_id_entry.get().replace( ' ', '' ) ) else read_error.pack(),
         read_id_entry.delete( 0, END ),
         read_id_entry.insert( 0, 'Id' )
     ) )
