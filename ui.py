@@ -11,6 +11,7 @@ remove_menu: Frame = Frame( window )
 update_menu: Frame = Frame( window )
 read_menu: Frame = Frame( window )
 show_all_menu: Frame = Frame( window )
+themes_menu: Frame = Frame( window )
 
 def hide_menus() -> None:
     add_menu.pack_forget()
@@ -18,6 +19,7 @@ def hide_menus() -> None:
     update_menu.pack_forget()
     read_menu.pack_forget()
     show_all_menu.pack_forget()
+    themes_menu.pack_forget()
 
     return
 
@@ -81,7 +83,7 @@ def ui() -> None:
     notes: StringVar = StringVar( value=notesapp.show_all() )
 
     global window
-    global add_menu, remove_menu, update_menu, read_menu, show_all_menu
+    global add_menu, remove_menu, update_menu, read_menu, show_all_menu, themes_menu
 
     window.configure( bg=bg.get() )
     add_menu.configure( bg=bg.get() )
@@ -89,6 +91,7 @@ def ui() -> None:
     update_menu.configure( bg=bg.get() )
     read_menu.configure( bg=bg.get() )
     show_all_menu.configure( bg=bg.get() )
+    themes_menu.configure( bg=bg.get() )
 
     # WINdOW SETUP
     window.geometry( '1000x700' )
@@ -106,12 +109,14 @@ def ui() -> None:
     update_button: Button = Button( buttons_side, text='Update Note', fg=fg.get(), bg=buttons.get(), font=fonts, width=25, command=lambda: ( hide_menus(), update_menu.pack() ) )
     read_button: Button = Button( buttons_side, text='Read Note', fg=fg.get(), bg=buttons.get(), font=fonts, width=25, command=lambda: ( hide_menus(), read_menu.pack() ) )
     show_all_button: Button = Button( buttons_side, text='Show All Note', fg=fg.get(), bg=buttons.get(), font=fonts, width=25, command=lambda: ( hide_menus(), show_all_menu.pack() ) )
+    themes_button: Button = Button( buttons_side, text='Choose theme', fg=fg.get(), bg=buttons.get(), font=fonts, width=25, command=lambda: ( hide_menus(), themes_menu.pack() ) )
 
     add_button.pack( pady=5 )
     remove_button.pack( pady=5 )
     update_button.pack( pady=5 )
     read_button.pack( pady=5 )
     show_all_button.pack( pady=5 )
+    themes_button.pack( pady=5 )
 
     buttons_side.pack( side='left', fill='y' )
 
@@ -208,6 +213,20 @@ def ui() -> None:
     notes_label: Label = Label( show_all_menu, textvariable=notes, font=fonts, fg=fg.get(), bg=bg.get() )
 
     notes_label.pack()
+
+    # THEME CHOOSER
+    choice_label: Label = Label( themes_menu, text='Choose the theme that you like, from the list below:', font=fonts, fg=fg.get(), bg=bg.get() )
+
+    light_theme: Button = Button( themes_menu, text='Light', font=fonts, fg=fg.get(), bg=bg.get(), width=15, command=lambda: ( ) )
+    dark_theme : Button = Button( themes_menu, text='Dark',  font=fonts, fg=fg.get(), bg=bg.get(), width=15, command=lambda: ( ) )
+    nature_theme: Button = Button( themes_menu, text='Nature', font=fonts, fg=fg.get(), bg=bg.get(), width=15, command=lambda: ( ) )
+    sky_theme: Button = Button( themes_menu, text='Sky', font=fonts, fg=fg.get(), bg=bg.get(), width=15, command=lambda: ( ) )
+
+    choice_label.pack()
+    light_theme.pack( pady=8 )
+    dark_theme.pack( pady=8 )
+    nature_theme.pack( pady=8 )
+    sky_theme.pack( pady=8 )
 
     # START WINDOW
     window.mainloop()
