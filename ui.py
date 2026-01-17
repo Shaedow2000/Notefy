@@ -222,10 +222,10 @@ def ui() -> None:
     # THEME CHOOSER
     choice_label: Label = Label( themes_menu, text='Choose the theme that you like, from the list below:', font=fonts, fg=fg.get(), bg=bg.get() )
 
-    light_theme: Button = Button( themes_menu, text='Light', font=fonts, fg=fg.get(), bg=bg.get(), width=15, command=lambda: (  ) )
-    dark_theme : Button = Button( themes_menu, text='Dark',  font=fonts, fg=fg.get(), bg=bg.get(), width=15, command=lambda: ( ) )
-    nature_theme: Button = Button( themes_menu, text='Nature', font=fonts, fg=fg.get(), bg=bg.get(), width=15, command=lambda: ( ) )
-    sky_theme: Button = Button( themes_menu, text='Sky', font=fonts, fg=fg.get(), bg=bg.get(), width=15, command=lambda: ( ) )
+    light_theme: Button = Button( themes_menu, text='Light', font=fonts, fg=fg.get(), bg=bg.get(), width=15, command=lambda: ( set_color( 'light' ) ) )
+    dark_theme : Button = Button( themes_menu, text='Dark',  font=fonts, fg=fg.get(), bg=bg.get(), width=15, command=lambda: ( set_color( 'dark' ) ) )
+    nature_theme: Button = Button( themes_menu, text='Nature', font=fonts, fg=fg.get(), bg=bg.get(), width=15, command=lambda: ( set_color( 'nature' ) ) )
+    sky_theme: Button = Button( themes_menu, text='Sky', font=fonts, fg=fg.get(), bg=bg.get(), width=15, command=lambda: ( set_color( 'sky' ) ) )
 
     choice_label.pack()
     light_theme.pack( pady=8 )
