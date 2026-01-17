@@ -1,5 +1,6 @@
 from os import replace
 from tkinter import *
+from tkinter import messagebox
 from backend import NotesApp
 
 notesapp: NotesApp = NotesApp()
@@ -99,8 +100,14 @@ def ui() -> None:
         notes.set( notesapp.show_all() )
     ) )
 
+    remove_all: Button = Button( remove_menu, text='Remove All', font=fonts, command=lambda: (
+        notesapp.remove_all() if messagebox.askyesno( title='Remove all notes', message='Do you really want to remove all the existing notes?', icon='warning' ) else ...,
+        notes.set( value=notesapp.show_all() )
+    ) )
+
     remove_id_entry.pack()
     remove.pack( pady=5 )
+    remove_all.pack( pady=15 )
 
     # UPDATE MENU
     update_error: Label = Label( update_menu, text=error[ 0 ], font=error[ 1 ], fg=error[ 2 ] )
