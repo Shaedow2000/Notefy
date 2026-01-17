@@ -34,6 +34,7 @@ def ui() -> None:
     default_title: StringVar = StringVar( value=f'Untitled #{ notesapp.get_notes_num() }' )
     error: list = [ 'Invalid ID', ( *fonts, 'bold italic underline' ), 'red' ]
     note: StringVar = StringVar( value='' )
+    notes: StringVar = StringVar( value=notesapp.show_all() )
 
     global window
     global add_menu, remove_menu, update_menu, read_menu, show_all_menu
@@ -141,6 +142,11 @@ def ui() -> None:
     read_id_entry.pack()
     read.pack( pady=5 )
     note_label.pack()
+
+    # SHOW ALL MENU
+    notes_label: Label = Label( show_all_menu, textvariable=notes, font=fonts )
+
+    notes_label.pack()
 
     # START WINDOW
     window.mainloop()
