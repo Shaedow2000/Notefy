@@ -3,10 +3,13 @@ from tkinter import messagebox
 from typing import Literal
 from backend import NotesApp
 
+# Init the notesapp class 
 notesapp: NotesApp = NotesApp()
 
+# Init the window
 window: Tk = Tk()
 
+# Init all the menu frames
 add_menu: Frame = Frame( window )
 remove_menu: Frame = Frame( window )
 update_menu: Frame = Frame( window )
@@ -15,6 +18,10 @@ show_all_menu: Frame = Frame( window )
 themes_menu: Frame = Frame( window )
 
 def hide_menus() -> None:
+    """
+    Hide all the menus that are packed
+    """
+
     add_menu.pack_forget()
     remove_menu.pack_forget()
     update_menu.pack_forget()
@@ -25,12 +32,16 @@ def hide_menus() -> None:
     return
 
 def is_int( n: str ) -> bool:
+    """
+    Check if the param entered is an integer or not.
+    """
     try:
         int( n )
         return True
     except ValueError:
         return False
 
+# Variable containing all the colors
 colors: dict = {
     'light': {
         'bg': 'lightgrey',
@@ -64,6 +75,9 @@ logo: StringVar = StringVar( value='' )
 buttons: StringVar = StringVar( value='' )
 
 def set_color( new_color: Literal[ 'light', 'dark', 'nature', 'sky' ] | None = None ) -> None:
+    """
+    Set the color to all the variables: bg, fg, logo and buttons.
+    """
     color: str = notesapp.get_color()
 
     if new_color != None:
@@ -78,6 +92,9 @@ def set_color( new_color: Literal[ 'light', 'dark', 'nature', 'sky' ] | None = N
     return
     
 def ui() -> None:
+    """
+    Main UI.
+    """
     set_color()
 
     # GLOBAL VARS
@@ -222,6 +239,10 @@ def ui() -> None:
     # THEME CHOOSER
     ### SET COLORS TO ALL ELEMENTS
     def apply_color() -> None:
+        """
+        Apply all the colors to all the elements in the UI.
+        """
+
         window.configure( bg=bg.get() )
         add_menu.configure( bg=bg.get() )
         remove_menu.configure( bg=bg.get() )
