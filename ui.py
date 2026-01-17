@@ -40,12 +40,12 @@ colors: dict = {
         'logo': 'darkblue'
     },
     'nature': {
-        'bg': '33C71E',
+        'bg': '#33C71E',
         'fg': 'black',
         'logo': 'darkgreen'
     },
     'sky': {
-        'bg': '32CDE6',
+        'bg': '#32CDE6',
         'fg': 'black',
         'logo': 'blue'
     }
@@ -65,6 +65,8 @@ def set_color() -> None:
     return
     
 def ui() -> None:
+    set_color()
+
     # GLOBAL VARS
     fonts: tuple = ( 'Impact', 18 )
     default_title: StringVar = StringVar( value=f'Untitled #{ notesapp.get_notes_num() }' )
@@ -80,17 +82,17 @@ def ui() -> None:
     window.minsize( 1000, 700 )
 
     # TOP LOGO
-    top_label: Label = Label( window, text='Notefy', font=( 'Impact', 26, 'bold' ), fg='black', bg='skyblue', relief=FLAT, bd=14 )
+    top_label: Label = Label( window, text='Notefy', font=( 'Impact', 26, 'bold' ), fg=fg.get(), bg=logo.get(), relief=FLAT, bd=14 )
     top_label.pack( fill='x' )
 
     # FRAME THAT HOLDS ALL THE BUTTONS TO OPEN THE MENUS
     buttons_side: Frame = Frame( window )
 
-    add_button: Button = Button( buttons_side, text='Add Note', font=fonts, width=25, command=lambda: ( hide_menus(), add_menu.pack() ) )
-    remove_button: Button = Button( buttons_side, text='Remove Note', font=fonts, width=25, command=lambda: ( hide_menus(), remove_menu.pack() ) )
-    update_button: Button = Button( buttons_side, text='Update Note', font=fonts, width=25, command=lambda: ( hide_menus(), update_menu.pack() ) )
-    read_button: Button = Button( buttons_side, text='Read Note', font=fonts, width=25, command=lambda: ( hide_menus(), read_menu.pack() ) )
-    show_all_button: Button = Button( buttons_side, text='Show All Note', font=fonts, width=25, command=lambda: ( hide_menus(), show_all_menu.pack() ) )
+    add_button: Button = Button( buttons_side, text='Add Note', fg=fg.get(), bg=bg.get(), font=fonts, width=25, command=lambda: ( hide_menus(), add_menu.pack() ) )
+    remove_button: Button = Button( buttons_side, text='Remove Note', fg=fg.get(), bg=bg.get(), font=fonts, width=25, command=lambda: ( hide_menus(), remove_menu.pack() ) )
+    update_button: Button = Button( buttons_side, text='Update Note', fg=fg.get(), bg=bg.get(), font=fonts, width=25, command=lambda: ( hide_menus(), update_menu.pack() ) )
+    read_button: Button = Button( buttons_side, text='Read Note', fg=fg.get(), bg=bg.get(), font=fonts, width=25, command=lambda: ( hide_menus(), read_menu.pack() ) )
+    show_all_button: Button = Button( buttons_side, text='Show All Note', fg=fg.get(), bg=bg.get(), font=fonts, width=25, command=lambda: ( hide_menus(), show_all_menu.pack() ) )
 
     add_button.pack( pady=5 )
     remove_button.pack( pady=5 )
@@ -107,7 +109,7 @@ def ui() -> None:
 
     text_entry.insert( 0, 'Text' )
 
-    submit: Button = Button( add_menu, text='Add', font=fonts, command=lambda: (
+    submit: Button = Button( add_menu, text='Add', fg=fg.get(), bg=bg.get(), font=fonts, command=lambda: (
         notesapp.add( title_entry.get().strip() if title_entry.get().replace( ' ', '' ) != '' else f'Untitled #{ notesapp.get_notes_num() }', text_entry.get().strip() ),
         title_entry.delete( 0, END ),
         text_entry.delete(  0, END ),
@@ -126,7 +128,7 @@ def ui() -> None:
     remove_id_entry: Entry = Entry( remove_menu, font=fonts, width=35 )
     remove_id_entry.insert( 0, 'Id' )
 
-    remove: Button = Button( remove_menu, text='Remove', font=fonts, command=lambda: (
+    remove: Button = Button( remove_menu, text='Remove', fg=fg.get(), bg=bg.get(), font=fonts, command=lambda: (
         remove_error.pack_forget(),
         notesapp.remove( int( remove_id_entry.get().replace( ' ', '' ) ) ) if is_int( remove_id_entry.get().replace( ' ', '' ) ) and int( remove_id_entry.get().replace( ' ', '' ) ) <= notesapp.get_notes_num() else remove_error.pack(),
         remove_id_entry.delete( 0, END ),
@@ -135,7 +137,7 @@ def ui() -> None:
         notes.set( notesapp.show_all() )
     ) )
 
-    remove_all: Button = Button( remove_menu, text='Remove All', font=fonts, command=lambda: (
+    remove_all: Button = Button( remove_menu, text='Remove All', fg=fg.get(), bg=bg.get(), font=fonts, command=lambda: (
         notesapp.remove_all() if messagebox.askyesno( title='Remove all notes', message='Do you really want to remove all the existing notes?', icon='warning' ) else ...,
         notes.set( value=notesapp.show_all() )
     ) )
@@ -154,7 +156,7 @@ def ui() -> None:
     update_id_entry.insert( 0, 'Id' )
     update_title_entry.insert( 0, '(leave empty to not change)' )
 
-    update: Button = Button( update_menu, text='Update', font=fonts, command=lambda: (
+    update: Button = Button( update_menu, text='Update', fg=fg.get(), bg=bg.get(), font=fonts, command=lambda: (
         update_error.pack_forget(),
         notesapp.update( int( update_id_entry.get().replace( ' ', '' ) ), update_title_entry.get().strip() if update_title_entry.get().replace( ' ', '' ) != '' else None, update_text_entry.get().strip() ) if is_int( update_id_entry.get().replace( ' ', '' ) ) and int( update_id_entry.get().replace( ' ', '' ) ) <= notesapp.get_notes_num() else update_error.pack(),
         update_id_entry.delete( 0, END ),
@@ -178,7 +180,7 @@ def ui() -> None:
     read_id_entry: Entry = Entry( read_menu, font=fonts, width=35 )
     read_id_entry.insert( 0, 'Id' )
 
-    read: Button = Button( read_menu, text='Read', font=fonts, command=lambda: (
+    read: Button = Button( read_menu, text='Read', fg=fg.get(), bg=bg.get(), font=fonts, command=lambda: (
         read_error.pack_forget(),
         ( note.set( notesapp.read( int( read_id_entry.get().replace( ' ', '' ) ) ) ), note_label.pack() ) if is_int( read_id_entry.get().replace( ' ', '' ) ) and int( read_id_entry.get().replace( ' ', '' ) ) <= notesapp.get_notes_num() else ( read_error.pack(), note_label.pack_forget() ),
         read_id_entry.delete( 0, END ),
