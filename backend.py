@@ -19,7 +19,7 @@ class NotesApp:
     def create_json_file( self ) -> None:
         if not os.path.exists( self.file ):
             with open( self.file, 'w' ) as file:
-                json.dump( { 'colors': 'light', 'notes': [] }, file )
+                json.dump( { 'color': 'light', 'notes': [] }, file )
 
     # Reweites all the file with new data ( overwriting )
     def rewrite_json( self, data: dict ) -> None:
@@ -27,6 +27,9 @@ class NotesApp:
             json.dump( data, file )
 
         return
+
+    def get_color( self ) -> str:
+        return self.data[ 'color' ]
 
     # Rewrite the ids in in order, from 0 to the index of the last note 
     def rewrite_ids( self ) -> None:
