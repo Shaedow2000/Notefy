@@ -51,6 +51,19 @@ colors: dict = {
     }
 }
 
+bg: StringVar = StringVar( value='' )
+fg: StringVar = StringVar( value='' )
+logo: StringVar = StringVar( value='' )
+
+def set_color() -> None:
+    color: str = notesapp.get_color()
+
+    bg = colors[ color ][ 'bg' ]
+    fg = colors[ color ][ 'fg' ]
+    logo = colors[ color ][ 'logo' ]
+
+    return
+    
 def ui() -> None:
     # GLOBAL VARS
     fonts: tuple = ( 'Impact', 18 )
