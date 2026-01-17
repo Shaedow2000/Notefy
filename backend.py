@@ -1,4 +1,5 @@
 import json, os
+from typing import Literal
 
 # Backend code of the app
 class NotesApp:
@@ -30,6 +31,13 @@ class NotesApp:
 
     def get_color( self ) -> str:
         return self.data[ 'color' ]
+
+    def write_color( self, new_color: Literal[ 'light', 'dark', 'nature', 'sky' ] ) -> None:
+        self.data[ 'color' ] = new_color
+
+        self.rewrite_json( self.data )
+
+        return
 
     # Rewrite the ids in in order, from 0 to the index of the last note 
     def rewrite_ids( self ) -> None:

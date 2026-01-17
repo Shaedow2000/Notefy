@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
+from typing import Literal
 from backend import NotesApp
 
 notesapp: NotesApp = NotesApp()
@@ -62,8 +63,11 @@ fg: StringVar = StringVar( value='' )
 logo: StringVar = StringVar( value='' )
 buttons: StringVar = StringVar( value='' )
 
-def set_color() -> None:
+def set_color( new_color: Literal[ 'light', 'dark', 'nature', 'sky' ] | None = None ) -> None:
     color: str = notesapp.get_color()
+
+    if new_color != None:
+        color = new_color
 
     bg.set( value=colors[ color ][ 'bg' ] )
     fg.set( value=colors[ color ][ 'fg' ] )
@@ -217,7 +221,7 @@ def ui() -> None:
     # THEME CHOOSER
     choice_label: Label = Label( themes_menu, text='Choose the theme that you like, from the list below:', font=fonts, fg=fg.get(), bg=bg.get() )
 
-    light_theme: Button = Button( themes_menu, text='Light', font=fonts, fg=fg.get(), bg=bg.get(), width=15, command=lambda: ( ) )
+    light_theme: Button = Button( themes_menu, text='Light', font=fonts, fg=fg.get(), bg=bg.get(), width=15, command=lambda: (  ) )
     dark_theme : Button = Button( themes_menu, text='Dark',  font=fonts, fg=fg.get(), bg=bg.get(), width=15, command=lambda: ( ) )
     nature_theme: Button = Button( themes_menu, text='Nature', font=fonts, fg=fg.get(), bg=bg.get(), width=15, command=lambda: ( ) )
     sky_theme: Button = Button( themes_menu, text='Sky', font=fonts, fg=fg.get(), bg=bg.get(), width=15, command=lambda: ( ) )
