@@ -1,4 +1,3 @@
-from os import replace
 from tkinter import *
 from tkinter import messagebox
 from backend import NotesApp
