@@ -58,9 +58,9 @@ logo: StringVar = StringVar( value='' )
 def set_color() -> None:
     color: str = notesapp.get_color()
 
-    bg = colors[ color ][ 'bg' ]
-    fg = colors[ color ][ 'fg' ]
-    logo = colors[ color ][ 'logo' ]
+    bg.set( value=colors[ color ][ 'bg' ] )
+    fg.set( value=colors[ color ][ 'fg' ] )
+    logo.set( value=colors[ color ][ 'logo' ] )
 
     return
     
