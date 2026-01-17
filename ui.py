@@ -67,8 +67,9 @@ def set_color( new_color: Literal[ 'light', 'dark', 'nature', 'sky' ] | None = N
     color: str = notesapp.get_color()
 
     if new_color != None:
+        notesapp.write_color( new_color )
         color = new_color
-
+    
     bg.set( value=colors[ color ][ 'bg' ] )
     fg.set( value=colors[ color ][ 'fg' ] )
     logo.set( value=colors[ color ][ 'logo' ] )
