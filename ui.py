@@ -39,19 +39,19 @@ colors: dict = {
         'bg': 'black',
         'fg': 'white',
         'logo': 'darkblue',
-        'buttons': 'darkblue'
+        'buttons': '#0D1A45'
     },
     'nature': {
-        'bg': '#33C71E',
+        'bg': '#36FF2B',
         'fg': 'black',
         'logo': 'darkgreen',
-        'buttons': 'green'
+        'buttons': '#41CC44'
     },
     'sky': {
         'bg': '#32CDE6',
         'fg': 'black',
-        'logo': 'blue',
-        'buttons': 'lightblue'
+        'logo': '#2957FF',
+        'buttons': '#456FFF'
     }
 }
 
