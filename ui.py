@@ -28,6 +28,29 @@ def is_int( n: str ) -> bool:
     except ValueError:
         return False
 
+colors: dict = {
+    'light': {
+        'bg': 'lightgrey',
+        'fg': 'black',
+        'logo': 'skyblue'
+    },
+    'dark': {
+        'bg': 'black',
+        'fg': 'white',
+        'logo': 'darkblue'
+    },
+    'nature': {
+        'bg': '33C71E',
+        'fg': 'black',
+        'logo': 'darkgreen'
+    },
+    'sky': {
+        'bg': '32CDE6',
+        'fg': 'black',
+        'logo': 'blue'
+    }
+}
+
 def ui() -> None:
     # GLOBAL VARS
     fonts: tuple = ( 'Impact', 18 )
