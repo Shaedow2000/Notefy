@@ -101,7 +101,7 @@ class NotesApp:
     # Show all the existing notes titles 
     def show_all( self ) -> str:
         notes_titles: str = ''
-        for i in range( self.data[ 'notes' ] ):
+        for i in range( len( self.data[ 'notes' ] ) ):
             if i % 2:
                 notes_titles += f'{ i }. { self.data[ "notes" ][ i ][ "title" ] }\n'
             else:
