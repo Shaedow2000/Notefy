@@ -76,7 +76,8 @@ def ui() -> None:
         title_entry.delete( 0, END ),
         text_entry.delete(  0, END ),
         default_title.set( value=f'Untitled #{ notesapp.get_notes_num() }' ),
-        text_entry.insert( 0, 'Text' )
+        text_entry.insert( 0, 'Text' ),
+        notes.set( value=notesapp.show_all() )
     ) )
 
     title_entry.pack()
@@ -94,7 +95,8 @@ def ui() -> None:
         notesapp.remove( int( remove_id_entry.get().replace( ' ', '' ) ) ) if is_int( remove_id_entry.get().replace( ' ', '' ) ) and int( remove_id_entry.get().replace( ' ', '' ) ) <= notesapp.get_notes_num() else remove_error.pack(),
         remove_id_entry.delete( 0, END ),
         remove_id_entry.insert( 0, 'Id' ),
-        default_title.set( value=f'Untitled #{ notesapp.get_notes_num() }' )
+        default_title.set( value=f'Untitled #{ notesapp.get_notes_num() }' ),
+        notes.set( notesapp.show_all() )
     ) )
 
     remove_id_entry.pack()
@@ -117,7 +119,8 @@ def ui() -> None:
         update_title_entry.delete( 0, END ),
         update_text_entry.delete(  0, END ),
         update_id_entry.insert( 0, 'Id' ),
-        update_title_entry.insert( 0, '(leave empty to not change)' )
+        update_title_entry.insert( 0, '(leave empty to not change)' ),
+        notes.set( value=notesapp.show_all() )
     ) )
 
     update_id_entry.pack()
