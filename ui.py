@@ -93,7 +93,8 @@ def ui() -> None:
         remove_error.pack_forget(),
         notesapp.remove( int( remove_id_entry.get().replace( ' ', '' ) ) ) if is_int( remove_id_entry.get().replace( ' ', '' ) ) and int( remove_id_entry.get().replace( ' ', '' ) ) <= notesapp.get_notes_num() else remove_error.pack(),
         remove_id_entry.delete( 0, END ),
-        remove_id_entry.insert( 0, 'Id' )
+        remove_id_entry.insert( 0, 'Id' ),
+        default_title.set( value=f'Untitled #{ notesapp.get_notes_num() }' )
     ) )
 
     remove_id_entry.pack()
