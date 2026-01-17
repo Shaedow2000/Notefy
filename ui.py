@@ -220,12 +220,47 @@ def ui() -> None:
     notes_label.pack()
 
     # THEME CHOOSER
+    ### SET COLORS TO ALL ELEMENTS
+    def apply_color( color: Literal[ 'light', 'dark', 'nature', 'sky' ] ) -> None:
+        window.configure( bg=bg.get() )
+        add_menu.configure( bg=bg.get() )
+        remove_menu.configure( bg=bg.get() )
+        update_menu.configure( bg=bg.get() )
+        read_menu.configure( bg=bg.get() )
+        show_all_menu.configure( bg=bg.get() )
+        themes_menu.configure( bg=bg.get() )
+
+        top_label.configure( fg=fg.get(), bg=logo.get() )
+        buttons_side.configure( bg=bg.get() )
+
+        add_button.configure( fg=fg.get(), bg=buttons.get() )
+        remove_button.configure( fg=fg.get(), bg=buttons.get() )
+        update_button.configure( fg=fg.get(), bg=buttons.get() )
+        read_button.configure( fg=fg.get(), bg=buttons.get() )
+        show_all_button.configure( fg=fg.get(), bg=buttons.get() )
+        themes_button.configure( fg=fg.get(), bg=buttons.get() )
+
+        submit.configure( fg=fg.get(), bg=buttons.get() )
+        remove.configure( fg=fg.get(), bg=buttons.get() )
+        update.configure( fg=fg.get(), bg=buttons.get() )
+        read.configure( fg=fg.get(), bg=buttons.get() )
+
+        note_label.configure(  fg=fg.get(), bg=bg.get() )
+        notes_label.configure( fg=fg.get(), bg=bg.get() )
+        choice_label.configure( fg=fg.get(), bg=bg.get() )
+
+        light_theme.configure( fg=fg.get(), bg=buttons.get() )
+        dark_theme.configure( fg=fg.get(), bg=buttons.get() )
+        nature_theme.configure( fg=fg.get(), bg=buttons.get() )
+        sky_theme.configure( fg=fg.get(), bg=buttons.get() )
+
+    ### MENU
     choice_label: Label = Label( themes_menu, text='Choose the theme that you like, from the list below:', font=fonts, fg=fg.get(), bg=bg.get() )
 
-    light_theme: Button = Button( themes_menu, text='Light', font=fonts, fg=fg.get(), bg=buttons.get(), width=15, command=lambda: ( set_color( 'light' ) ) )
-    dark_theme : Button = Button( themes_menu, text='Dark',  font=fonts, fg=fg.get(), bg=buttons.get(), width=15, command=lambda: ( set_color( 'dark' ) ) )
-    nature_theme: Button = Button( themes_menu, text='Nature', font=fonts, fg=fg.get(), bg=buttons.get(), width=15, command=lambda: ( set_color( 'nature' ) ) )
-    sky_theme: Button = Button( themes_menu, text='Sky', font=fonts, fg=fg.get(), bg=buttons.get(), width=15, command=lambda: ( set_color( 'sky' ) ) )
+    light_theme: Button = Button( themes_menu, text='Light', font=fonts, fg=fg.get(), bg=buttons.get(), width=15, command=lambda: ( set_color( 'light' ), apply_color( 'light' ) ) )
+    dark_theme : Button = Button( themes_menu, text='Dark',  font=fonts, fg=fg.get(), bg=buttons.get(), width=15, command=lambda: ( set_color( 'dark' ), apply_color( 'dark' ) ) )
+    nature_theme: Button = Button( themes_menu, text='Nature', font=fonts, fg=fg.get(), bg=buttons.get(), width=15, command=lambda: ( set_color( 'nature' ), apply_color( 'nature' ) ) )
+    sky_theme: Button = Button( themes_menu, text='Sky', font=fonts, fg=fg.get(), bg=buttons.get(), width=15, command=lambda: ( set_color( 'sky' ), apply_color( 'sky' ) ) )
 
     choice_label.pack()
     light_theme.pack( pady=8 )
